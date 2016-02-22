@@ -17,6 +17,10 @@ struct dirLight
 
 in vec4 vNormal;
 in vec4 vPosition;
+in vec4 vTangent;
+in vec4 vBiTangent;
+in vec2 vTexCoords;
+
 out vec4 fragColour;
 
 uniform float time;
@@ -24,17 +28,21 @@ uniform vec3 cameraPos;
 uniform dirLight light;
 uniform specMaterial material;
 
+mat3 TBN;
 
 vec4 CalcDirLight(dirLight light, vec3 normal, vec3 camPos, vec3 vPos)
 {	
-	float diffuseTerm = max(0, dot(normal.xyz, light.direction));
-	vec3 diffuse = texture(material.diffuse, ) * light.diffuse * diffuseTerm;
+	TBN = mat3(normalize(vTangent.xyz), normalize(vBiTangent.xyz), normalize(vNormal.xyz));
+	vec3 normalMap = texture(material.normal, vTexCoords).xyz * 2 - 1;
+
+	float diffuseTerm = max(0, dot(TBN * normalMap, light.direction));
+	vec3 diffuse = vec3(texture(material.diffuse, vTexCoords)) * light.diffuse * diffuseTerm;
 
 	vec3 reflectedVector = reflect(-light.direction, normal.xyz);
 	vec3 surfaceToCameraVector = normalize(camPos - vPos);
 
-	float specularTerm = pow(max(0, dot(reflectedVector, surfaceToCameraVector)), 5.0f);
-	vec3 specular  = light.specular * vec3(1) * specularTerm;
+	float specularTerm = pow(max(0, dot(reflectedVector, surfaceToCameraVector)), 1.0f);
+	vec3 specular = light.specular * texture(material.specular, vTexCoords).xyz * specularTerm;
 
 	return vec4(diffuse + specular, 1);
 
@@ -43,6 +51,10 @@ vec4 CalcDirLight(dirLight light, vec3 normal, vec3 camPos, vec3 vPos)
 
 void main()
 {
+	
+
+
+
 	fragColour = CalcDirLight(light, vNormal.xyz, cameraPos, vPosition.xyz);
 }
 

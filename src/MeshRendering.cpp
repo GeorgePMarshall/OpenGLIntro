@@ -33,9 +33,10 @@ void MeshRendering::Draw()
 	shader.setMat4("transform", marksman);
 	shader.setFloat("time", (float)glfwGetTime());
 
-	shader.setVec3("light.direction", vec3(0, 1, 0));
-	shader.setVec3("light.diffuse", vec3(0, 0, 0));
-	shader.setVec3("light.specular", vec3(0.7, 0, 0.9));
+	if(Input::getInput()->getKey(GLFW_KEY_F))
+		shader.setVec3("light.direction", vec3(sin(glfwGetTime()), sin(glfwGetTime()), sin(glfwGetTime())));
+	shader.setVec3("light.diffuse", vec3(1));
+	shader.setVec3("light.specular", vec3(1));
 
 	shader.setVec3("cameraPos", camera.getPosition());
 
