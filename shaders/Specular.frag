@@ -15,8 +15,8 @@ struct dirLight
 	vec3 specular;
 };
 
-in vec4 vNormal;
 in vec4 vPosition;
+in vec4 vNormal;
 in vec4 vTangent;
 in vec4 vBiTangent;
 in vec2 vTexCoords;
@@ -35,7 +35,7 @@ vec4 CalcDirLight(dirLight light, vec3 normal, vec3 camPos, vec3 vPos)
 	TBN = mat3(normalize(vTangent.xyz), normalize(vBiTangent.xyz), normalize(vNormal.xyz));
 	vec3 normalMap = texture(material.normal, vTexCoords).xyz * 2 - 1;
 
-	float diffuseTerm = max(0, dot(TBN * normalMap, light.direction));
+	float diffuseTerm = max(0, dot(normalize(TBN * normalMap), normalize(light.direction)));
 	vec3 diffuse = vec3(texture(material.diffuse, vTexCoords)) * light.diffuse * diffuseTerm;
 
 	vec3 reflectedVector = reflect(-light.direction, normal.xyz);

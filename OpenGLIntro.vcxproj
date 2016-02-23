@@ -27,6 +27,7 @@
     <ClCompile Include="src\Input.cpp" />
     <ClCompile Include="src\Mesh.cpp" />
     <ClCompile Include="src\MeshRendering.cpp" />
+    <ClCompile Include="src\ParticleEmitter.cpp" />
     <ClCompile Include="src\RenderingTest.cpp" />
     <ClCompile Include="src\ShaderProgram.cpp" />
     <ClCompile Include="src\SolarSystem.cpp" />
@@ -44,6 +45,7 @@
     <ClInclude Include="src\Input.h" />
     <ClInclude Include="src\Mesh.h" />
     <ClInclude Include="src\MeshRendering.h" />
+    <ClInclude Include="src\ParticleEmiter.h" />
     <ClInclude Include="src\RenderingTest.h" />
     <ClInclude Include="src\ShaderProgram.h" />
     <ClInclude Include="src\SolarSystem.h" />
@@ -52,6 +54,9 @@
     <ClInclude Include="src\Time.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shaders\Particle.frag" />
+    <None Include="Shaders\Particle.geom" />
+    <None Include="Shaders\Particle.vert" />
     <None Include="shaders\Shader.frag" />
     <None Include="shaders\Shader.vert" />
     <None Include="shaders\Specular.frag" />

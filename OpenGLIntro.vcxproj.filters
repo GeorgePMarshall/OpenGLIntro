@@ -63,6 +63,9 @@
     <ClCompile Include="src\SpecularMaterial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ParticleEmitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\gl_core_4_4.h">
@@ -107,6 +110,9 @@
     <ClInclude Include="src\SpecularMaterial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\ParticleEmiter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\Shader.frag">
@@ -119,6 +125,15 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="shaders\Specular.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Particle.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Particle.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Particle.geom">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

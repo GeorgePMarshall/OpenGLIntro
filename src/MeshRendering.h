@@ -18,5 +18,7 @@ class MeshRendering : public Application
 	Mesh* mesh;
 	SpecularMaterial* material;
 
+	GLuint VAO, VBO;
+
 	glm::mat4 marksman;
 };
