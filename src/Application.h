@@ -2,6 +2,7 @@
 #include "gl_core_4_4.h"
 #include <GLFW\glfw3.h>
 #define GLM_SWIZZLE
+#define window derp
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 

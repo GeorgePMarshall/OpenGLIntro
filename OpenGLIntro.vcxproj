@@ -45,7 +45,7 @@
     <ClInclude Include="src\Input.h" />
     <ClInclude Include="src\Mesh.h" />
     <ClInclude Include="src\MeshRendering.h" />
-    <ClInclude Include="src\ParticleEmiter.h" />
+    <ClInclude Include="src\ParticleEmitter.h" />
     <ClInclude Include="src\RenderingTest.h" />
     <ClInclude Include="src\ShaderProgram.h" />
     <ClInclude Include="src\SolarSystem.h" />
@@ -57,6 +57,8 @@
     <None Include="Shaders\Particle.frag" />
     <None Include="Shaders\Particle.geom" />
     <None Include="Shaders\Particle.vert" />
+    <None Include="shaders\ParticleUpdate.geom" />
+    <None Include="shaders\ParticleUpdate.vert" />
     <None Include="shaders\Shader.frag" />
     <None Include="shaders\Shader.vert" />
     <None Include="shaders\Specular.frag" />
