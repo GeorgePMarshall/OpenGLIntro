@@ -94,6 +94,38 @@ void ShaderProgram::LinkProgram(GLuint vertexShader, GLuint geometryShader, GLui
 	}
 }
 
+void ShaderProgram::CreateShaderProgram(const char* vertexShaderPath)
+{
+	if (programID != 0)
+	{
+		glDeleteProgram(programID);
+		programID = 0;
+	}
+
+	GLuint vertexShader = CreateShader(vertexShaderPath, GL_VERTEX_SHADER);
+
+	programID = glCreateProgram();
+	glAttachShader(programID, vertexShader);
+	glLinkProgram(programID);
+
+	GLint programSuccess = GL_FALSE;
+	glGetProgramiv(programID, GL_LINK_STATUS, &programSuccess);
+	if (programSuccess == GL_FALSE)
+	{
+		int infoLogLength = 0;
+		glGetProgramiv(programID, GL_INFO_LOG_LENGTH, &infoLogLength);
+		GLchar* infoLog = new char[infoLogLength];
+
+		glGetProgramInfoLog(programID, infoLogLength, 0, infoLog);
+		std::cout << "Failed to link shader program: \n" << infoLog << '\n';
+
+		delete[] infoLog;
+	}
+
+	glDeleteShader(vertexShader);
+
+}
+
 void ShaderProgram::CreateShaderProgram(const char* vertexShaderPath, const char* fragmentShaderPath)
 {
 	if (programID != 0)

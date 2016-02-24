@@ -6,15 +6,16 @@ class ShaderProgram
 {
 private:
 	GLuint programID = 0;
+	
 	GLuint CreateShader(const char* path, GLenum shaderType);
 	void LinkProgram(GLuint vertexShader, GLuint fragmentShader);
 	void LinkProgram(GLuint vertexShader, GLuint geometryShader, GLuint fragmentShader);
 
 
 public:
+	void CreateShaderProgram(const char* vertexShaderPath);
 	void CreateShaderProgram(const char* vertexShaderPath, const char* fragmentShaderPath);
 	void CreateShaderProgram(const char* vertexShaderPath, const char* geometryShaderPath, const char* fragmentShaderPath);
-
 
 	void useProgram();
 

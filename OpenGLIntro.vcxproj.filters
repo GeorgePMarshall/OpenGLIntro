@@ -16,6 +16,9 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{75e84497-44ab-4b88-a0c6-670a3bdcdded}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders\ParticleShader">
+      <UniqueIdentifier>{8ef7db44-725e-4a32-92d1-4e638f9e8c0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Source.cpp">
@@ -127,20 +130,17 @@
     <None Include="shaders\Specular.vert">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Shaders\Particle.vert">
-      <Filter>Shaders</Filter>
+    <None Include="Shaders\ParticleDraw.frag">
+      <Filter>Shaders\ParticleShader</Filter>
     </None>
-    <None Include="Shaders\Particle.frag">
-      <Filter>Shaders</Filter>
+    <None Include="Shaders\ParticleDraw.geom">
+      <Filter>Shaders\ParticleShader</Filter>
     </None>
-    <None Include="Shaders\Particle.geom">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shaders\ParticleUpdate.geom">
-      <Filter>Shaders</Filter>
+    <None Include="Shaders\ParticleDraw.vert">
+      <Filter>Shaders\ParticleShader</Filter>
     </None>
     <None Include="shaders\ParticleUpdate.vert">
-      <Filter>Shaders</Filter>
+      <Filter>Shaders\ParticleShader</Filter>
     </None>
   </ItemGroup>
 </Project>

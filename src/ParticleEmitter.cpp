@@ -1,7 +1,8 @@
 #include "ParticleEmitter.h"
-#include "ShaderProgram.h"
 
-void ParticleEmitter::CreateUpdateShader()
+
+void ParticleEmitter::Initialize()
 {
-
+	drawShader.CreateShaderProgram("ParticleDraw.vert", "ParticleDraw.geom", "ParticleDraw.frag");
+	updateShader.CreateShaderProgram("ParticleUpdate.vert");
 }

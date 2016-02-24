@@ -54,10 +54,9 @@
     <ClInclude Include="src\Time.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\Particle.frag" />
-    <None Include="Shaders\Particle.geom" />
-    <None Include="Shaders\Particle.vert" />
-    <None Include="shaders\ParticleUpdate.geom" />
+    <None Include="Shaders\ParticleDraw.frag" />
+    <None Include="Shaders\ParticleDraw.geom" />
+    <None Include="Shaders\ParticleDraw.vert" />
     <None Include="shaders\ParticleUpdate.vert" />
     <None Include="shaders\Shader.frag" />
     <None Include="shaders\Shader.vert" />
