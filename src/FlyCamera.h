@@ -8,7 +8,6 @@
 class FlyCamera : public Camera
 {
 	Input* input;
-	Time* time;
 
 	GLfloat speed = 5.0f;
 	GLfloat rotateSpeed = 0.01f;

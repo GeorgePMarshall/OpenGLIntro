@@ -1,5 +1,7 @@
 #pragma once
 #include "ShaderProgram.h"
+#include "Camera.h"
+#include "Time.h"
 
 struct Particle
 {
@@ -16,11 +18,13 @@ class ParticleEmitter
 	ShaderProgram drawShader;
 	ShaderProgram updateShader;
 	
-	
-	void Initialize();
+	void CreateBuffers();
+
 
 
 protected:
+
+	GLuint activeBuffer, vao[2], vbo[2];
 
 	Particle* particles;	
 	GLuint maxParticles;
@@ -29,16 +33,18 @@ protected:
 
 	float minLifeSpan, maxLifeSpan;
 	float startSize, endSize;
+	float minVelocity, maxVelocity;
 
 	glm::vec4 startColour, EndColour;
 
-
+	float lastDrawTime;
 
 
 public:
 
 
-
+	void Initialize();
+	void Draw(Camera* camera);
 
 
 

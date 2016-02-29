@@ -4,6 +4,7 @@
 #include "ShaderProgram.h"
 #include "Mesh.h"
 #include "SpecularMaterial.h"
+#include "ParticleEmitter.h"
 
 class MeshRendering : public Application
 {
@@ -17,6 +18,7 @@ class MeshRendering : public Application
 
 	Mesh* mesh;
 	SpecularMaterial* material;
+	ParticleEmitter emitter;
 
 	GLuint VAO, VBO;
 

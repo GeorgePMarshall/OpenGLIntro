@@ -18,8 +18,7 @@ public:
 
 	void Update();
 
-	float deltaTime();
-
+	static float deltaTime();
 
 
 };

@@ -4,7 +4,6 @@
 void FlyCamera::initialize()
 {
 	input = Input::getInput();
-	time = Time::getInstance();
 }
 
 void FlyCamera::update()
@@ -46,7 +45,7 @@ void FlyCamera::update()
 
 	if (glm::length(moveDir))
 	{
-		moveDir = time->deltaTime() * speed * glm::normalize(moveDir);
+		moveDir = Time::deltaTime() * speed * glm::normalize(moveDir);
 		setPosition(getPosition() + moveDir);
 	}
 
@@ -65,12 +64,12 @@ void FlyCamera::CalculateRotation()
 
 	if (mouseOffset.y != 0)
 	{
-		setTransform(getWorldTransform() * glm::rotate(rotateSpeed * time->deltaTime() * -mouseOffset.y, vec3(1, 0, 0)));
+		setTransform(getWorldTransform() * glm::rotate(rotateSpeed * Time::deltaTime() * -mouseOffset.y, vec3(1, 0, 0)));
 	}
 
 	if (mouseOffset.x != 0)
 	{
-		setTransform(getWorldTransform() * glm::rotate(rotateSpeed * time->deltaTime() * -mouseOffset.x, vec3(viewTransform[1])));
+		setTransform(getWorldTransform() * glm::rotate(rotateSpeed * Time::deltaTime() * -mouseOffset.x, vec3(viewTransform[1])));
 	}
 
 }

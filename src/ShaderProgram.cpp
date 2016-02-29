@@ -32,18 +32,21 @@ GLuint ShaderProgram::CreateShader(const char* path, GLenum shaderType)
 		switch (shaderType)
 		{
 		case(GL_VERTEX_SHADER):
-			std::cout << "Vertex shader creation failed: \n" << infoLog << '\n';
+			std::cout << "Vertex shader ";
 			break;
 		case(GL_GEOMETRY_SHADER) :
-			std::cout << "Geometry shader creation failed: \n" << infoLog << '\n';
+			std::cout << "Geometry shader ";
 			break;
 		case(GL_FRAGMENT_SHADER) :
-			std::cout << "Fragment shader creation failed: \n" << infoLog << '\n';
+			std::cout << "Fragment shader ";
 			break;
 		default:
-			std::cout << "Unknown shader creation failed: \n" << infoLog << '\n';
+			std::cout << "Unknown shader ";
 			break;
 		}
+
+		std::cout << "\""<< path << "\" creation failed: \n" << infoLog << '\n';
+
 		delete[] infoLog;
 	}
 
@@ -94,7 +97,7 @@ void ShaderProgram::LinkProgram(GLuint vertexShader, GLuint geometryShader, GLui
 	}
 }
 
-void ShaderProgram::CreateShaderProgram(const char* vertexShaderPath)
+void ShaderProgram::CreateShaderProgram(const char* vertexShaderPath, const char** varyings, GLuint amount)
 {
 	if (programID != 0)
 	{
@@ -106,6 +109,8 @@ void ShaderProgram::CreateShaderProgram(const char* vertexShaderPath)
 
 	programID = glCreateProgram();
 	glAttachShader(programID, vertexShader);
+	if (amount != 0)
+		glTransformFeedbackVaryings(programID, amount, varyings, GL_INTERLEAVED_ATTRIBS);
 	glLinkProgram(programID);
 
 	GLint programSuccess = GL_FALSE;
@@ -168,6 +173,10 @@ void ShaderProgram::useProgram()
 	glUseProgram(programID);
 }
 
+GLuint ShaderProgram::getProgramID()
+{
+	return programID;
+}
 
 void ShaderProgram::setInt(const char* name, GLint value)
 {

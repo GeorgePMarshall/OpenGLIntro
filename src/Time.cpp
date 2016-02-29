@@ -20,7 +20,7 @@ void Time::Update()
 
 float Time::deltaTime()
 {
-	return dt;
+	return getInstance()->dt;
 }
 
 Time* Time::getInstance()

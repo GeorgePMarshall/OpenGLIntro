@@ -13,12 +13,12 @@ private:
 
 
 public:
-	void CreateShaderProgram(const char* vertexShaderPath);
+	void CreateShaderProgram(const char* vertexShaderPath, const char** varyings = nullptr, GLuint amount = 0);
 	void CreateShaderProgram(const char* vertexShaderPath, const char* fragmentShaderPath);
 	void CreateShaderProgram(const char* vertexShaderPath, const char* geometryShaderPath, const char* fragmentShaderPath);
 
 	void useProgram();
-
+	GLuint getProgramID();
 
 	void setInt(const char* name, GLint value);
 	void setFloat(const char* name, GLfloat value);
