@@ -16,15 +16,25 @@ uniform float deltatime;
 uniform float minLife;
 uniform float maxLife;
 
+uniform float minVelocity;
+uniform float maxVelocity;
+
 uniform vec3 emitterPosition;
 
-float rand(float seed, float value)
-{
-    return fract(sin(dot(vec2(seed, value),vec2(12.9898,78.233))) * 43758.5453);
-}
+const float INVERSE_MAX_UINT = 1.0f / 4294967295.0f;
+
+float rand(uint seed, float range) {
+	uint i = (seed ^ 12345391u) * 2654435769u;
+	i ^= (i << 6u) ^ (i >> 26u);
+	i *= 2654435769u;
+	i += (i << 5u) ^ (i >> 12u);
+	return float(range * i) * INVERSE_MAX_UINT;
+} 
 
 void main()
 {
+	uint seed = uint(time * 1000.0) + uint(gl_VertexID);
+
 	vPosition = position + velocity * deltatime;
 	vVelocity = velocity;
 	vLifetime = lifetime + deltatime;
@@ -32,11 +42,11 @@ void main()
 
 	if(vLifetime > vLifespan)
 	{
-		vVelocity = vec3(rand(time, 2) - 1, rand(time, 2) - 1, rand(time, 2) - 1);
-		vVelocity = normalize(vVelocity);
+		vVelocity = vec3(rand(seed++, 2) - 1, rand(seed++, 2) - 1, rand(seed++, 2) - 1);
+		vVelocity = (normalize(vVelocity);// * rand(seed++, maxVelocity - minVelocity) + minVelocity);
 		vPosition = emitterPosition;
 		vLifetime = 0;
-		vLifespan = rand(time, maxLife - minLife) + minLife;
+		vLifespan = rand(seed, maxLife - minLife) + minLife;
 	}
 
 }

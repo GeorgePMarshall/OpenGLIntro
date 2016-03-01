@@ -5,6 +5,12 @@
 #include <iostream>
 
 
+ShaderProgram::~ShaderProgram()
+{
+	glDeleteProgram(programID);
+}
+
+
 GLuint ShaderProgram::CreateShader(const char* path, GLenum shaderType)
 {
 	std::string shaderSource;
@@ -12,12 +18,12 @@ GLuint ShaderProgram::CreateShader(const char* path, GLenum shaderType)
 	std::ifstream shaderFile(path);
 	shaderStream << shaderFile.rdbuf();
 	shaderSource = shaderStream.str();
-	const GLchar* vertexShaderCharSource = shaderSource.c_str();
+	const GLchar* shaderCharSource = shaderSource.c_str();
 	shaderFile.close();
 
 	//Vertex Shader creation
 	GLuint shader = glCreateShader(shaderType);
-	glShaderSource(shader, 1, &vertexShaderCharSource, 0);
+	glShaderSource(shader, 1, &shaderCharSource, 0);
 	glCompileShader(shader);
 	GLint success = GL_FALSE;
 	glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
@@ -171,11 +177,6 @@ void ShaderProgram::CreateShaderProgram(const char* vertexShaderPath, const char
 void ShaderProgram::useProgram()
 {
 	glUseProgram(programID);
-}
-
-GLuint ShaderProgram::getProgramID()
-{
-	return programID;
 }
 
 void ShaderProgram::setInt(const char* name, GLint value)

@@ -33,6 +33,7 @@
     <ClCompile Include="src\SolarSystem.cpp" />
     <ClCompile Include="src\Source.cpp" />
     <ClCompile Include="src\SpecularMaterial.cpp" />
+    <ClCompile Include="src\Terrain.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Time.cpp" />
   </ItemGroup>
@@ -50,6 +51,7 @@
     <ClInclude Include="src\ShaderProgram.h" />
     <ClInclude Include="src\SolarSystem.h" />
     <ClInclude Include="src\SpecularMaterial.h" />
+    <ClInclude Include="src\Terrain.h" />
     <ClInclude Include="src\Texture.h" />
     <ClInclude Include="src\Time.h" />
   </ItemGroup>

@@ -42,7 +42,7 @@ protected:
 
 public:
 
-
+	~ParticleEmitter();
 	void Initialize();
 	void Draw(Camera* camera);
 

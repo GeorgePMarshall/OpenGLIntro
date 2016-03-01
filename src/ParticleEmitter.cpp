@@ -1,18 +1,25 @@
 #include "ParticleEmitter.h"
 
 
+ParticleEmitter::~ParticleEmitter()
+{
+	delete[] particles;
+	glDeleteVertexArrays(2, vao);
+	glDeleteBuffers(2, vbo);
+}
+
 void ParticleEmitter::Initialize()
 {
 	activeBuffer = 0;
 
-	startSize = 1;
-	endSize = 4;
-	minVelocity = 5;
-	maxVelocity = 10;
+	startSize = 0.001;
+	endSize = 0.001;
+	minVelocity = 0;
+	maxVelocity = 5;
 	minLifeSpan = 1;
-	maxLifeSpan = 4;
+	maxLifeSpan = 2;
 
-	maxParticles = 1000;
+	maxParticles = 10000000;
 
 	particles = new Particle[maxParticles];
 
@@ -22,11 +29,12 @@ void ParticleEmitter::Initialize()
 	drawShader.setFloat("startSize", startSize);
 	drawShader.setFloat("endSize", endSize);
 	
-	
 	const char* varyings[] = { "vPosition", "vVelocity", "vLifetime", "vLifespan" };
 	updateShader.CreateShaderProgram("Shaders/ParticleUpdate.vert", varyings, 4);
 	updateShader.setFloat("minLife", minLifeSpan);
 	updateShader.setFloat("maxLife", maxLifeSpan);
+	updateShader.setFloat("minVelocity", minVelocity);
+	updateShader.setFloat("maxVelocity", maxVelocity);
 }
 
 void ParticleEmitter::CreateBuffers()
@@ -83,6 +91,7 @@ void ParticleEmitter::Draw(Camera* camera)
 
 	updateShader.setFloat("time", glfwGetTime());
 	updateShader.setFloat("deltatime", Time::deltaTime());
+	//updateShader.setVec3("emitterPosition", vec3(5 * sin(glfwGetTime()), 3, 5 * cos(glfwGetTime())));
 	updateShader.setVec3("emitterPosition", position);
 
 	updateShader.useProgram();

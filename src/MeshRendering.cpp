@@ -7,7 +7,6 @@ void MeshRendering::Initialize()
 	camera.initialize();
 
 	shader.CreateShaderProgram("shaders/Specular.vert", "shaders/Specular.frag");
-	//shader.CreateShaderProgram("shaders/ParticleDraw.vert", "shaders/ParticleDraw.geom", "shaders/ParticleDraw.frag");
 	
 	mesh = new Mesh(&shader, "data/soulspear/soulspear.fbx");
 	material = new SpecularMaterial;
@@ -15,7 +14,7 @@ void MeshRendering::Initialize()
 	material->SetNormal("data/soulspear/soulspear_normal.tga");
 	material->SetSpecular("data/soulspear/soulspear_specular.tga");
 	marksman = glm::scale(marksman, vec3(2));
-
+	
 
 	emitter.Initialize();
 
@@ -31,15 +30,15 @@ void MeshRendering::Draw()
 	shader.setMat4("projectionView", camera.getProjectionViewTransform());
 	shader.setMat4("transform", marksman);
 	shader.setFloat("time", (float)glfwGetTime());
-
+	
 	shader.setVec3("light.direction", vec3(sin(glfwGetTime()), 0.5, cos(glfwGetTime())));
 	shader.setVec3("light.diffuse", vec3(1));
 	shader.setVec3("light.specular", vec3(1));
-
+	
 	shader.setVec3("cameraPos", camera.getPosition());
 
-	//material->Bind(&shader);
-	//mesh->Draw();
+	material->Bind(&shader);
+	mesh->Draw();
 
 	emitter.Draw((Camera*)&camera);
 }

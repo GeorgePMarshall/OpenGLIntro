@@ -18,7 +18,6 @@ public:
 	void CreateShaderProgram(const char* vertexShaderPath, const char* geometryShaderPath, const char* fragmentShaderPath);
 
 	void useProgram();
-	GLuint getProgramID();
 
 	void setInt(const char* name, GLint value);
 	void setFloat(const char* name, GLfloat value);
@@ -27,4 +26,5 @@ public:
 	void setVec4(const char* name, const glm::vec4 &value);
 	void setMat4(const char* name, const glm::mat4 &value);
 
+	~ShaderProgram();
 };
