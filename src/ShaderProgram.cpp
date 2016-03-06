@@ -11,8 +11,10 @@ ShaderProgram::~ShaderProgram()
 }
 
 
-GLuint ShaderProgram::CreateShader(const char* path, GLenum shaderType)
+GLuint ShaderProgram::CreateShader(const char* name, GLenum shaderType)
 {
+	std::string path("shaders/"); 
+	path += name;
 	std::string shaderSource;
 	std::ostringstream shaderStream;
 	std::ifstream shaderFile(path);

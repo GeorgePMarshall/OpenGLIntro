@@ -29,6 +29,7 @@
     <ClCompile Include="src\MeshRendering.cpp" />
     <ClCompile Include="src\ParticleEmitter.cpp" />
     <ClCompile Include="src\RenderingTest.cpp" />
+    <ClCompile Include="src\RescourceManager.cpp" />
     <ClCompile Include="src\ShaderProgram.cpp" />
     <ClCompile Include="src\SolarSystem.cpp" />
     <ClCompile Include="src\Source.cpp" />
@@ -48,6 +49,7 @@
     <ClInclude Include="src\MeshRendering.h" />
     <ClInclude Include="src\ParticleEmitter.h" />
     <ClInclude Include="src\RenderingTest.h" />
+    <ClInclude Include="src\RescourceManager.h" />
     <ClInclude Include="src\ShaderProgram.h" />
     <ClInclude Include="src\SolarSystem.h" />
     <ClInclude Include="src\SpecularMaterial.h" />
@@ -64,6 +66,8 @@
     <None Include="shaders\Shader.vert" />
     <None Include="shaders\Specular.frag" />
     <None Include="shaders\Specular.vert" />
+    <None Include="Shaders\Terrain.frag" />
+    <None Include="Shaders\Terrain.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F7A09194-00D3-4CC9-83A0-21CEF92C2AAF}</ProjectGuid>

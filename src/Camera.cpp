@@ -47,7 +47,7 @@ void Camera::setPosition(vec3 position)
 {
 	return worldTransform[3].xyz;
 }
-void Camera::setTransform(const glm::mat4& transform)
+void Camera::setWorldTransform(const glm::mat4& transform)
 {
 	worldTransform = transform;
 	UpdateProjectionViewTransform();

@@ -1,9 +1,6 @@
 #include "Application.h"
-#include "Input.h"
-#include "Time.h"
 
-#include <iostream>
-
+void test() {}
 
 int Application::Run()
 {
@@ -25,7 +22,7 @@ int Application::Run()
 		glfwTerminate();
 		return -3;
 	}
-
+	
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -34,6 +31,7 @@ int Application::Run()
 	Input::Initialize(window);
 	Time::Initialize();
 	Initialize();
+
 
 	while (!glfwWindowShouldClose(window))
 	{

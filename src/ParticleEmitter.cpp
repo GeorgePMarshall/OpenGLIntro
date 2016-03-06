@@ -12,25 +12,25 @@ void ParticleEmitter::Initialize()
 {
 	activeBuffer = 0;
 
-	startSize = 0.001;
-	endSize = 0.001;
+	startSize = 0.01;
+	endSize = 0.01;
 	minVelocity = 0;
 	maxVelocity = 5;
 	minLifeSpan = 1;
-	maxLifeSpan = 2;
+	maxLifeSpan = 3;
 
-	maxParticles = 10000000;
+	maxParticles = 100000;
 
 	particles = new Particle[maxParticles];
 
 	CreateBuffers();
 
-	drawShader.CreateShaderProgram("Shaders/ParticleDraw.vert", "Shaders/ParticleDraw.geom", "Shaders/ParticleDraw.frag");
+	drawShader.CreateShaderProgram("ParticleDraw.vert", "ParticleDraw.geom", "ParticleDraw.frag");
 	drawShader.setFloat("startSize", startSize);
 	drawShader.setFloat("endSize", endSize);
 	
 	const char* varyings[] = { "vPosition", "vVelocity", "vLifetime", "vLifespan" };
-	updateShader.CreateShaderProgram("Shaders/ParticleUpdate.vert", varyings, 4);
+	updateShader.CreateShaderProgram("ParticleUpdate.vert", varyings, 4);
 	updateShader.setFloat("minLife", minLifeSpan);
 	updateShader.setFloat("maxLife", maxLifeSpan);
 	updateShader.setFloat("minVelocity", minVelocity);
@@ -92,7 +92,8 @@ void ParticleEmitter::Draw(Camera* camera)
 	updateShader.setFloat("time", glfwGetTime());
 	updateShader.setFloat("deltatime", Time::deltaTime());
 	//updateShader.setVec3("emitterPosition", vec3(5 * sin(glfwGetTime()), 3, 5 * cos(glfwGetTime())));
-	updateShader.setVec3("emitterPosition", position);
+	//updateShader.setVec3("emitterPosition", position);
+	updateShader.setVec3("emitterPosition", camera->getPosition() + vec3(glm::normalize(-camera->getWorldTransform()[2]) * 10.f));
 
 	updateShader.useProgram();
 	glEnable(GL_RASTERIZER_DISCARD);

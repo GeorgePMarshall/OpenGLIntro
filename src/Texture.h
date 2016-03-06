@@ -13,10 +13,12 @@ class Texture
 
 
 public:
+	Texture() {};
 	Texture(const char* filePath);
 	~Texture();
 
 	void Bind();
-
+	void LoadTexture(const char* filePath);
+	void LoadTexture(GLfloat* textureData, GLuint width, GLuint height, GLenum internalFormat = GL_R32F, GLenum format = GL_RED);
 
 };

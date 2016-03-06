@@ -6,7 +6,7 @@ void MeshRendering::Initialize()
 	camera.setPerspective(glm::radians(80.f), 16 / 9.f);
 	camera.initialize();
 
-	shader.CreateShaderProgram("shaders/Specular.vert", "shaders/Specular.frag");
+	shader.CreateShaderProgram("Specular.vert", "Specular.frag");
 	
 	mesh = new Mesh(&shader, "data/soulspear/soulspear.fbx");
 	material = new SpecularMaterial;
@@ -15,6 +15,7 @@ void MeshRendering::Initialize()
 	material->SetSpecular("data/soulspear/soulspear_specular.tga");
 	marksman = glm::scale(marksman, vec3(2));
 	
+	terrain.Initialize(100, 100);
 
 	emitter.Initialize();
 
@@ -22,7 +23,22 @@ void MeshRendering::Initialize()
 
 void MeshRendering::Update()
 {
-	camera.update();
+	if (Input::getInput()->getKey(GLFW_KEY_T))
+	{
+		++i;
+		if (i >= cats.size())
+			i = 0;
+		camera.setWorldTransform(cats[i]);
+	}
+	else if(Input::getInput()->getKey(GLFW_KEY_R))
+	{
+		camera.update();
+		cats.push_back(camera.getWorldTransform());
+	}
+	else
+	{
+		camera.update();
+	}
 }
 
 void MeshRendering::Draw()
@@ -41,6 +57,9 @@ void MeshRendering::Draw()
 	mesh->Draw();
 
 	emitter.Draw((Camera*)&camera);
+	
+
+	terrain.draw((Camera*)&camera);
 }
 
 void MeshRendering::Shutdown()

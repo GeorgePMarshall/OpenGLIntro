@@ -29,8 +29,8 @@ public:
 	void setOrthographic(float left, float right, float bottom, float top);
 	void LookAt(vec3 position, vec3 target, vec3 worldUp = vec3(0, 1, 0));
 	void setPosition(vec3 position);
-	vec3 Camera::getPosition() const;
-	void setTransform(const glm::mat4& transform);
+	vec3 getPosition() const;
+	void setWorldTransform(const glm::mat4& transform);
 	const glm::mat4& getWorldTransform() const;
 	const glm::mat4& getViewTransform() const;
 	const glm::mat4& getProjectionTransform() const;

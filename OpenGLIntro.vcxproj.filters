@@ -19,6 +19,9 @@
     <Filter Include="Shaders\ParticleShader">
       <UniqueIdentifier>{8ef7db44-725e-4a32-92d1-4e638f9e8c0b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders\TerrainShader">
+      <UniqueIdentifier>{550fdb7b-13e1-407f-9cf1-f89c88fb3a8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Source.cpp">
@@ -72,6 +75,9 @@
     <ClCompile Include="src\Terrain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\RescourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\gl_core_4_4.h">
@@ -122,6 +128,9 @@
     <ClInclude Include="src\Terrain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\RescourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\Shader.frag">
@@ -147,6 +156,12 @@
     </None>
     <None Include="shaders\ParticleUpdate.vert">
       <Filter>Shaders\ParticleShader</Filter>
+    </None>
+    <None Include="Shaders\Terrain.vert">
+      <Filter>Shaders\TerrainShader</Filter>
+    </None>
+    <None Include="Shaders\Terrain.frag">
+      <Filter>Shaders\TerrainShader</Filter>
     </None>
   </ItemGroup>
 </Project>

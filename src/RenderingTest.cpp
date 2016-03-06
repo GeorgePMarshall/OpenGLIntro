@@ -11,7 +11,7 @@ void RenderingTest::Initialize()
 	camera.setPerspective(glm::radians(30.f), 16 / 9.f);
 	camera.initialize();
 
-	shader.CreateShaderProgram("shaders\\Shader.vert", "shaders\\Shader.frag");
+	shader.CreateShaderProgram("Shader.vert", "Shader.frag");
 
 	/*
 	glGenBuffers(1, &VBO);

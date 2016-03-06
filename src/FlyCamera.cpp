@@ -33,19 +33,24 @@ void FlyCamera::update()
 		moveDir += right;
 	}
 
-	if (input->getKey(GLFW_KEY_LEFT_SHIFT))
+	if (input->getKey(GLFW_KEY_C))
 	{
-		moveDir -= up;
+		moveDir -= vec3(0, 1, 0);
 	}
 
 	if (input->getKey(GLFW_KEY_SPACE))
 	{
-		moveDir += up;
+		moveDir += vec3(0, 1, 0);
 	}
+
 
 	if (glm::length(moveDir))
 	{
-		moveDir = Time::deltaTime() * speed * glm::normalize(moveDir);
+		if (input->getKey(GLFW_KEY_LEFT_SHIFT))
+			moveDir = Time::deltaTime() * sprintSpeed * glm::normalize(moveDir);
+		else
+			moveDir = Time::deltaTime() * speed * glm::normalize(moveDir);
+
 		setPosition(getPosition() + moveDir);
 	}
 
@@ -64,12 +69,12 @@ void FlyCamera::CalculateRotation()
 
 	if (mouseOffset.y != 0)
 	{
-		setTransform(getWorldTransform() * glm::rotate(rotateSpeed * Time::deltaTime() * -mouseOffset.y, vec3(1, 0, 0)));
+		setWorldTransform(getWorldTransform() * glm::rotate(rotateSpeed * Time::deltaTime() * -mouseOffset.y, vec3(1, 0, 0)));
 	}
 
 	if (mouseOffset.x != 0)
 	{
-		setTransform(getWorldTransform() * glm::rotate(rotateSpeed * Time::deltaTime() * -mouseOffset.x, vec3(viewTransform[1])));
+		setWorldTransform(getWorldTransform() * glm::rotate(rotateSpeed * Time::deltaTime() * -mouseOffset.x, vec3(viewTransform[1])));
 	}
 
 }

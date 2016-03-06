@@ -5,6 +5,8 @@
 #include "Mesh.h"
 #include "SpecularMaterial.h"
 #include "ParticleEmitter.h"
+#include "Terrain.h"
+#include <vector>
 
 class MeshRendering : public Application
 {
@@ -19,8 +21,11 @@ class MeshRendering : public Application
 	Mesh* mesh;
 	SpecularMaterial* material;
 	ParticleEmitter emitter;
+	Terrain terrain;
 
 	GLuint VAO, VBO;
 
 	glm::mat4 marksman;
+	std::vector<glm::mat4> cats;
+	int i = 0;
 };
