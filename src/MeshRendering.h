@@ -27,5 +27,6 @@ class MeshRendering : public Application
 
 	glm::mat4 marksman;
 	std::vector<glm::mat4> cats;
+
 	int i = 0;
 };

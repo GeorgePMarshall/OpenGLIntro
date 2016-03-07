@@ -91,9 +91,9 @@ void ParticleEmitter::Draw(Camera* camera)
 
 	updateShader.setFloat("time", glfwGetTime());
 	updateShader.setFloat("deltatime", Time::deltaTime());
-	//updateShader.setVec3("emitterPosition", vec3(5 * sin(glfwGetTime()), 3, 5 * cos(glfwGetTime())));
+	updateShader.setVec3("emitterPosition", vec3(5 * sin(glfwGetTime()), 3, 5 * cos(glfwGetTime())));
 	//updateShader.setVec3("emitterPosition", position);
-	updateShader.setVec3("emitterPosition", camera->getPosition() + vec3(glm::normalize(-camera->getWorldTransform()[2]) * 10.f));
+	//updateShader.setVec3("emitterPosition", camera->getPosition() + vec3(glm::normalize(-camera->getWorldTransform()[2]) * 10.f));
 
 	updateShader.useProgram();
 	glEnable(GL_RASTERIZER_DISCARD);
