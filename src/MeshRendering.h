@@ -3,6 +3,7 @@
 #include "FlyCamera.h"
 #include "ShaderProgram.h"
 #include "Mesh.h"
+#include "AnimatedMesh.h"
 #include "SpecularMaterial.h"
 #include "ParticleEmitter.h"
 #include "Terrain.h"
@@ -18,14 +19,14 @@ class MeshRendering : public Application
 	FlyCamera camera;
 	ShaderProgram shader;
 
-	Mesh* mesh;
+	AnimatedMesh* dragon;
 	SpecularMaterial* material;
 	ParticleEmitter emitter;
 	Terrain terrain;
 
 	GLuint VAO, VBO;
 
-	glm::mat4 marksman;
+	glm::mat4 transform;
 	std::vector<glm::mat4> cats;
 
 	int i = 0;

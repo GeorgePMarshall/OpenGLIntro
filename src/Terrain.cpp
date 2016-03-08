@@ -7,6 +7,9 @@ void Terrain::Initialize(GLuint rows, GLuint cols)
 	this->cols = cols;
 	
 	shader.CreateShaderProgram("Terrain.vert", "Terrain.frag");
+	shader.setVec3("light.direction", vec3(0.2, 0.2, 0.2));
+	shader.setVec3("light.diffuse", vec3(1));
+	shader.setVec3("light.specular", vec3(1));
 
 	baseTexture.SetDiffuse("data/TerrainTextures/lava_d.jpg");
 	baseTexture.SetNormal("data/TerrainTextures/lava_n.jpg");
@@ -33,7 +36,7 @@ void Terrain::GenerateGrid()
 		for (GLuint j = 0; j < cols; ++j)
 		{
 			vertices[i * cols + j].position = vec3((float)j, height[i * cols + j], (float)i);
-			vertices[i * cols + j].texCoord = vec2((float)j/rows, (float)i/cols);
+			vertices[i * cols + j].texCoord = vec2((float)j/(rows / 2), (float)i/(cols / 2));
 		}
 	}
 
@@ -144,12 +147,12 @@ GLfloat* Terrain::GenerateHeightMap()
 	{
 		for (GLuint j = 0; j < cols; ++j)
 		{
-			GLfloat amplitude = 10.f;
+			GLfloat amplitude = 20.f;
 			perlinData[j * cols + i] = 0;
 
 			for (GLuint k = 0; k < sampleAmount; ++k)
 			{
-				GLfloat frequency = powf(6, (float)k);
+				GLfloat frequency = powf(4, (float)k);
 				GLfloat perlinSample = glm::perlin(vec2(i, j) * scale * frequency) * 0.5 + 0.5;
 				perlinData[j * cols + i] += perlinSample * amplitude;
 				amplitude *= amplitudeStep;
@@ -164,9 +167,8 @@ GLfloat* Terrain::GenerateHeightMap()
 void Terrain::draw(Camera* camera)
 {
 	shader.setMat4("projectionView", camera->getProjectionViewTransform());
-	shader.setVec3("light.direction", vec3(0.2, 0.2, 0.2));
-	shader.setVec3("light.diffuse", vec3(1));
-	shader.setVec3("light.specular", vec3(1));
+	//shader.setVec3("light.direction", vec3(sin(glfwGetTime()), 1, cos(glfwGetTime())));
+
 
 	shader.setVec3("cameraPos", camera->getPosition());
 

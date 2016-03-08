@@ -211,5 +211,10 @@ void ShaderProgram::setMat4(const char* name, const glm::mat4 &value)
 	useProgram();
 	glUniformMatrix4fv(glGetUniformLocation(programID, name), 1, GL_FALSE, glm::value_ptr(value));
 }
+void ShaderProgram::setFloatArray(const char* name, const float* value, GLuint amount)
+{
+	useProgram();
+	glUniformMatrix4fv(glGetUniformLocation(programID, name), amount, GL_FALSE, value);
+}
 
 

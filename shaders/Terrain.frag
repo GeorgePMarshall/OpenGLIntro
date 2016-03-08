@@ -29,7 +29,6 @@ uniform vec3 camPos;
 void main()
 {
 	//fragColour = texture(heightMap, vTexCoord).rrrr / 5;
-	//fragColour.a = 1;
 
 	float diffuseTerm = max(0, dot(vNormal, normalize(light.direction)));
 	vec3 diffuse = vec3(texture(material.diffuse, vTexCoord)) * light.diffuse * diffuseTerm;
@@ -37,12 +36,10 @@ void main()
 	vec3 reflectedVector = reflect(-light.direction, vNormal);
 	vec3 surfaceToCameraVector = normalize(camPos - vPosition);
 
-	float specularTerm = pow(max(0, dot(reflectedVector, surfaceToCameraVector)), 1.0f);
+	float specularTerm = pow(max(0, dot(reflectedVector, surfaceToCameraVector)), 0.2f);
 	vec3 specular = light.specular * texture(material.specular, vTexCoord).xyz * specularTerm;
 
 
+	fragColour = vec4(diffuse + specular, 1);
 
-
-	fragColour = mix (vec4(diffuse + specular, 1), texture(heightMap, vTexCoord).rrrr, 0.00);
-	//fragColour = CalcDirLight(light, vNormal, camPos, vPosition);
 }

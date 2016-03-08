@@ -25,6 +25,7 @@ public:
 	void setVec3(const char* name, const glm::vec3 &value);
 	void setVec4(const char* name, const glm::vec4 &value);
 	void setMat4(const char* name, const glm::mat4 &value);
+	void setFloatArray(const char* name, const float* value, GLuint amount);
 
 	~ShaderProgram();
 };

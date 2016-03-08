@@ -22,6 +22,9 @@
     <Filter Include="Shaders\TerrainShader">
       <UniqueIdentifier>{550fdb7b-13e1-407f-9cf1-f89c88fb3a8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders\AnimationShader">
+      <UniqueIdentifier>{8fde5570-9485-4c88-a199-215dc8b0261b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Source.cpp">
@@ -78,6 +81,9 @@
     <ClCompile Include="src\RescourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\AnimatedMesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\gl_core_4_4.h">
@@ -131,6 +137,9 @@
     <ClInclude Include="src\RescourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\AnimatedMesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\Shader.frag">
@@ -162,6 +171,12 @@
     </None>
     <None Include="Shaders\Terrain.frag">
       <Filter>Shaders\TerrainShader</Filter>
+    </None>
+    <None Include="Shaders\animatedSpecular.vert">
+      <Filter>Shaders\AnimationShader</Filter>
+    </None>
+    <None Include="Shaders\animatedSpecular.frag">
+      <Filter>Shaders\AnimationShader</Filter>
     </None>
   </ItemGroup>
 </Project>

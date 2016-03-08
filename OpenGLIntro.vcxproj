@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\AnimatedMesh.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\FlyCamera.cpp" />
@@ -39,6 +40,7 @@
     <ClCompile Include="src\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\AnimatedMesh.h" />
     <ClInclude Include="src\Application.h" />
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\FlyCamera.h" />
@@ -58,6 +60,8 @@
     <ClInclude Include="src\Time.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shaders\animatedSpecular.frag" />
+    <None Include="Shaders\animatedSpecular.vert" />
     <None Include="Shaders\ParticleDraw.frag" />
     <None Include="Shaders\ParticleDraw.geom" />
     <None Include="Shaders\ParticleDraw.vert" />

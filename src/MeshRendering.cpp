@@ -6,18 +6,17 @@ void MeshRendering::Initialize()
 	camera.setPerspective(glm::radians(80.f), 16 / 9.f);
 	camera.initialize();
 
-	shader.CreateShaderProgram("Specular.vert", "Specular.frag");
+	shader.CreateShaderProgram("animatedSpecular.vert", "animatedSpecular.frag");
 	
-	mesh = new Mesh(&shader, "data/soulspear/soulspear.fbx");
-	material = new SpecularMaterial;
-	material->SetDiffuse("data/soulspear/soulspear_diffuse.tga");
-	material->SetNormal("data/soulspear/soulspear_normal.tga");
-	material->SetSpecular("data/soulspear/soulspear_specular.tga");
-	marksman = glm::scale(marksman, vec3(2));
-	
-	terrain.Initialize(100, 100);
+	transform = glm::translate(transform, vec3(10));
+	transform = glm::scale(transform, vec3(0.2));
+	transform = glm::rotate(transform, glm::radians(-90.f) , vec3(1, 0, 0));
 
-	emitter.Initialize();
+	dragon = new AnimatedMesh(&shader, "data/demolition/demolition.fbx");
+	
+	//terrain.Initialize(100, 100);
+
+	//emitter.Initialize();
 
 }
 
@@ -44,25 +43,24 @@ void MeshRendering::Update()
 void MeshRendering::Draw()
 {
 	shader.setMat4("projectionView", camera.getProjectionViewTransform());
-	shader.setMat4("transform", marksman);
+	shader.setMat4("transform", transform);
 	shader.setFloat("time", (float)glfwGetTime());
 	
-	shader.setVec3("light.direction", vec3(sin(glfwGetTime()), 0.5, cos(glfwGetTime())));
+	shader.setVec3("light.direction", vec3(0.2));
 	shader.setVec3("light.diffuse", vec3(1));
 	shader.setVec3("light.specular", vec3(1));
 	
 	shader.setVec3("cameraPos", camera.getPosition());
 
-	material->Bind(&shader);
-	mesh->Draw();
+	dragon->Draw();
 
-	emitter.Draw((Camera*)&camera);
+	//emitter.Draw((Camera*)&camera);
 	
 
-	terrain.draw((Camera*)&camera);
+	//terrain.draw((Camera*)&camera);
 }
 
 void MeshRendering::Shutdown()
 {
-	delete mesh;
+	delete dragon;
 }
